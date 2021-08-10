@@ -1,3 +1,17 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+    
+  devise_for :users
+  
+    root 'homes#top'
+    
+    resources :users, onry: [:show, :edit, :update]
+    
+    resources :articles, onry: [:show, :new, :create]
+    
+    resources :likes, onry: [:index, :create, :destroy]
+    
+    resources :categories, onry: [:show]
+    
+    resources :article_comments, onry: [:create, :destroy]
+    
 end

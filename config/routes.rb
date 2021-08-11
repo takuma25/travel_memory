@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
     
   devise_for :users
-  
-    root 'homes#top'
+
+    root to:'homes#top'
     
     resources :users, onry: [:show, :edit, :update]
     

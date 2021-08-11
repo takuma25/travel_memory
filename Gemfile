@@ -69,3 +69,7 @@ end
 
 #ユーザ認証機能
 gem 'devise'
+
+#レイアウトデザイン機能
+gem 'bootstrap', '~> 4.5'
+gem 'jquery-rails'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_11_041159) do
+ActiveRecord::Schema.define(version: 2021_08_12_144530) do
 
   create_table "article_comments", force: :cascade do |t|
     t.integer "article_id"
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_08_11_041159) do
     t.integer "category_id"
     t.string "title"
     t.text "body"
-    t.text "image"
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -35,11 +35,19 @@ ActiveRecord::Schema.define(version: 2021_08_11_041159) do
     t.string "detail_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
+    t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
   create_table "likes", force: :cascade do |t|
     t.integer "user_id"
     t.integer "article_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "post_images", force: :cascade do |t|
+    t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -4,7 +4,7 @@
   <p>本文：<%= @post_image.body %></p>
   <p>名前：<%= @post_image.user.name %></p>
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
-  
+
   <% if @post_image.user == current_user %>
     <%= link_to "削除", article_path(@post_image), method: :delete %>
   <% end %>
@@ -16,16 +16,16 @@
   <p><%= image_tag('sample-author1.jpg') %></p>
   <%= article_comment.user.name %>
   <%= article_comment.created_at.strftime('%Y/%m/%d') %><%= article_comment.comment %>
-  
+
   <% if article_comment.user == current_user %>
   <div class="comment-delete">
-    <%= link_to "削除", article_article_comment_path(.article, article_comment), method: :delete %>
+    <%= link_to "削除", article_path(@post_comment), method: :delete %>
   </div>
   <% end %>
 <% end %>
 </div>
 <div class="new-comment">
-<%= form_with(model:[@post_image, @post_comment], local: true) do |f| %>
+<%= form_with(model:[@article], local: true) do |f| %>
 
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
   <%= f.submit "送信する" %>

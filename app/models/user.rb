@@ -9,4 +9,6 @@ class User < ApplicationRecord
   
   #article_commensモデルとの関連づけ
   has_many :article_comments, dependent: :destroy
+  
+  attachment :profile_image
 end

@@ -1,18 +1,5 @@
 class ArticlesController < ApplicationController
 
-  def set_parents
-    @parents = Category.where(ancestry: nil)
-  end
-
-  def get_category_children
-    @category_children = Category.find("#{params[:parent_id]}").children
-  end
-
-  def get_category_grandchildren
-    @category_grandchildren = Category.find("#{params[:child_id]}").children
-  end
-
-
   def show
     @post_image = Article.find(params[:id])
     @post_comment = ArticleComment.new
@@ -20,8 +7,8 @@ class ArticlesController < ApplicationController
 
   def new
    @post_image = Article.new
-   #@parents = Category.where(ancestry: nil)
-   #@parents = Category.all.order("id ASC").limit(8)
+   
+   @category = Category.all.order("id ASC").limit(8)
 
   end
 

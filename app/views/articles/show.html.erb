@@ -3,6 +3,7 @@
   <%= attachment_image_tag @post_image, :image %>
   <p>本文：<%= @post_image.body %></p>
   <p>名前：<%= @post_image.user.name %></p>
+  
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
 
   <% if @post_image.user == current_user %>
@@ -25,7 +26,7 @@
 <% end %>
 </div>
 <div class="new-comment">
-  <%= form_with(model:[@article], local: true) do |f| %>
+  <%= form_with(model: @post_image, local: true) do |f| %>
 
   <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
   <%= f.submit "送信する" %>

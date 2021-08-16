@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  before_action :set_parents
 
   def show
     @post_image = Article.find(params[:id])
@@ -7,9 +8,6 @@ class ArticlesController < ApplicationController
 
   def new
    @post_image = Article.new
-   
-   @category = Category.all.order("id ASC").limit(8)
-
   end
 
   def comfirm
@@ -20,7 +18,7 @@ class ArticlesController < ApplicationController
     @post_image = Article.new(post_image_params)
     @post_image.user_id = current_user.id
     @post_image.save
-    redirect_to articles: :new
+    redirect_to article_path(@post_image)
   end
 
   def destroy
@@ -29,11 +27,14 @@ class ArticlesController < ApplicationController
     redirect_to articles_path
   end
 
-
   private
 
   def post_image_params
-    params.require(:article).permit(:image, :title, :body)
+    params.require(:article).permit(:image, :title, :body, :category_id)
+  end
+
+  def set_parents
+    @parents = Category.where(ancestry: nil)
   end
 
 end

@@ -10,5 +10,8 @@ class User < ApplicationRecord
   #article_commensモデルとの関連づけ
   has_many :article_comments, dependent: :destroy
   
+  #likesモデルとの関連づけ
+  has_many :likes, dependent: :destroy
+  
   attachment :profile_image
 end

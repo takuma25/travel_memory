@@ -3,7 +3,8 @@ class ArticlesController < ApplicationController
 
   def show
     @post_image = Article.find(params[:id])
-    @post_comment = ArticleComment.new
+    #@post_comment = ArticleComment.new
+    @post_comment = @post_image.article_comments.new
   end
 
   def new
@@ -24,7 +25,7 @@ class ArticlesController < ApplicationController
   def destroy
     @post_image = Article.find(params[:id])
     @post_image.destroy
-    redirect_to articles_path
+    redirect_to user_path(current_user)
   end
 
   private

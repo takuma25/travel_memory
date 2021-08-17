@@ -2,6 +2,7 @@
   
   <p><%= image_tag('sample.jpg') %></p>
   <P><%= @user.name %></P>
+  <P><%= @user.name_kana %></P>
   <p><%= @user.self_introduction %></p>
 
   <% if @user.id == current_user.id %>
@@ -10,15 +11,17 @@
 </div>
 
 
-<% #投稿内容履歴一覧 %>
+<%#= 投稿内容履歴一覧 %>
 <% @articles.each do |article| %>
 <div>
   <%= link_to article_path(article.id) do %>
+    <p>タイトル：<%= article.title %></p>
     <%= attachment_image_tag article, :image %>
   <% end %>
-  <p>タイトル：<%= article.title %></p>
   <p>本文：<%= article.body %></p>
   <p>日付：<%= article.updated_at %></p>
+  <p>エリア：<%= article.category_id %></p>
+  <p>👍<%= article.likes.count %> いいね</p>
 </div>
 <% end %>
 <%= paginate @articles %>

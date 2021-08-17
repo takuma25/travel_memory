@@ -3,32 +3,47 @@
   <%= attachment_image_tag @post_image, :image %>
   <p>本文：<%= @post_image.body %></p>
   <p>名前：<%= @post_image.user.name %></p>
-  
   <p>投稿日時：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+  <p>エリア：<%= @post_image.category_id %></p>
+  <% if @post_image.liked_by?(current_user) %>
+    <p>
+      <%= link_to like_path(@post_image), method: :delete do %>
+        👍<%= @post_image.likes.count %> いいね
+      <% end %>
+    </p>
+    <% else %>
+    <p>
+      <%= link_to likes_path(article_id: @post_image.id), method: :post do %>
+        👍<%= @post_image.likes.count %> いいね
+      <% end %>
+    </p>
+  <% end %>
 
   <% if @post_image.user == current_user %>
-    <%= link_to "削除", article_path(@post_image), method: :delete %>
+    <%= link_to "記事削除", article_path(@post_image.id), method: :delete %>
   <% end %>
 </div>
 
 <div class="comments">
 <p>コメント件数：<%= @post_image.article_comments.count %></p>
 <% @post_image.article_comments.each do |article_comment| %>
-  <p><%= image_tag('sample-author1.jpg') %></p>
-  <%= article_comment.user.name %>
-  <%= article_comment.created_at.strftime('%Y/%m/%d') %><%= article_comment.comment %>
+  <p><%#= image_tag('sample.jpg') %></p>
+  <%= article_comment.user_id %>
+  <%#= article_comment.created_at.strftime('%Y/%m/%d') %>
+  <%= article_comment.text %>
 
   <% if article_comment.user == current_user %>
   <div class="comment-delete">
-    <%= link_to "削除", article_path(@post_comment), method: :delete %>
+    <%= link_to "削除", article_article_comment_path(@post_image.id), method: :delete %>
   </div>
   <% end %>
 <% end %>
 </div>
 <div class="new-comment">
-  <%= form_with(model: @post_image, local: true) do |f| %>
 
-  <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+  <%= form_with(url: article_article_comments_path(@post_image), local: true) do |f| %>
+
+  <%= f.text_area :text, rows:'5',placeholder: "コメントをここに" %>
   <%= f.submit "送信する" %>
 <% end %>
 </div>

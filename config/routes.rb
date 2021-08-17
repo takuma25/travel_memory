@@ -4,17 +4,16 @@ Rails.application.routes.draw do
 
     root to:'homes#top'
 
-    resources :articles, onry: [:show, :new, :create]do
+    resources :articles, only: [:show, :new, :create, :destroy]do
       resources :article_comments, only: [:create, :destroy]
-      post 'articles/show' => 'articles#show'
     end
 
-    resources :users, onry: [:show, :edit, :update,]
+    resources :users, only: [:show, :edit, :update]
     post 'usres/complete' => 'usres#complete' ,as: 'complete'
 
-    resources :likes, onry: [:index, :create, :destroy]
+    resources :likes, only: [:index, :create, :destroy]
 
-    resources :categories, onry: [:show]
+    resources :categories, only: [:show]
 
     #resources :article_comments, onry: [:create, :destroy]
 

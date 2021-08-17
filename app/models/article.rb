@@ -7,6 +7,13 @@ class Article < ApplicationRecord
    #article_commentsモデルとの関連づけ
    has_many :article_comments, dependent: :destroy
    
+   #likesモデルとの関連づけ
+   has_many :likes, dependent: :destroy
+
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
+   
    
    enum category_id:{
      "---":0,

@@ -9,7 +9,7 @@ class ArticleCommentsController < ApplicationController
   end
 
   def destroy
-    binding.pry
+    #binding.pry
     ArticleComment.find_by(id: params[:id],article_id: params[:article_id]).destroy
     # @post_image = Article.find(params[:article_id])
     # comment = article_comment.find_by(article_id: params[:article_id])

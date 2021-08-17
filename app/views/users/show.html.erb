@@ -1,9 +1,9 @@
 <div class="profile-container">
   
   <p><%= image_tag('sample.jpg') %></p>
-  <P><%= @user.name %></P>
-  <P><%= @user.name_kana %></P>
-  <p><%= @user.self_introduction %></p>
+  <P>名前：<%= @user.name %></P>
+  <P>フリガナ：<%= @user.name_kana %></P>
+  <p>自己紹介：<%= @user.self_introduction %></p>
 
   <% if @user.id == current_user.id %>
     <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
@@ -19,8 +19,8 @@
     <%= attachment_image_tag article, :image %>
   <% end %>
   <p>本文：<%= article.body %></p>
-  <p>日付：<%= article.updated_at %></p>
   <p>エリア：<%= article.category_id %></p>
+  <p>投稿日：<%= article.created_at.strftime('%Y/%m/%d') %></p>
   <p>👍<%= article.likes.count %> いいね</p>
 </div>
 <% end %>

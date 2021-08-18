@@ -1,6 +1,6 @@
 <div class="profile-container">
   
-  <p><%= image_tag('sample.jpg') %></p>
+  <p><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "sample.jpg" %></p>
   <P>名前：<%= @user.name %></P>
   <P>フリガナ：<%= @user.name_kana %></P>
   <p>自己紹介：<%= @user.self_introduction %></p>

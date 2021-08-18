@@ -6,7 +6,7 @@
     <p>本文：<%= @post_image.body %></p>
     <p>名前：<%= @post_image.user.name %></p>
     <p>投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
-    
+
   <% if @post_image.liked_by?(current_user) %>
     <p>
       <%= link_to like_path(@post_image), method: :delete do %>
@@ -30,14 +30,17 @@
 <div class="comments">
 <p>コメント件数：<%= @post_image.article_comments.count %></p>
 <% @post_image.article_comments.each do |article_comment| %>
+  <%#= pp article_comment.user.name %>
+  <%#= article_comment.user.name %>
+  <%#= current_user.name %>
+  
+  <%#= article_comment.created_at.strftime('%Y/%m/%d')  %>
   <%#= image_tag('sample.jpg') %>
-  <%= article_comment.user_id %>
-  <%#= article_comment.created_at.strftime('%Y/%m/%d') %>
   <%= article_comment.text %>
 
   <% if article_comment.user == current_user %>
   <div class="comment-delete">
-    <%= link_to "コメント削除", article_article_comment_path(@post_image.id), method: :delete %>
+    <%= link_to "コメント削除", article_article_comment_path(article_comment.article_id,article_comment.id), method: :delete %>
   </div>
   <% end %>
 <% end %>

@@ -13,9 +13,8 @@ Rails.application.routes.draw do
 
     resources :likes, only: [:index, :create, :destroy]
 
-    resources :categories, only: [:show]
+    resource :categories, params: :category_id, only: [:show]
 
-    #resources :article_comments, onry: [:create, :destroy]
 
 
 end

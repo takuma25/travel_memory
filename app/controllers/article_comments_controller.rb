@@ -9,14 +9,8 @@ class ArticleCommentsController < ApplicationController
   end
 
   def destroy
-    #binding.pry
     ArticleComment.find_by(id: params[:id],article_id: params[:article_id]).destroy
-    # @post_image = Article.find(params[:article_id])
-    # comment = article_comment.find_by(article_id: params[:article_id])
-    #comment = ArticleComment.find(params[:id])
-    #comment = ArticleComment.find(id: params[:id], article_id: params[:article_id])
-    # comment.destroy
-    #redirect_to article_path(params[:article_id])
+    redirect_to article_path(params[:article_id])
   end
 
   private

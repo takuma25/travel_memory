@@ -3,7 +3,6 @@ class ArticlesController < ApplicationController
 
   def show
     @post_image = Article.find(params[:id])
-    #@post_comment = ArticleComment.new
     @post_comment = @post_image.article_comments.new
   end
 

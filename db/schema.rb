@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_16_111747) do
+ActiveRecord::Schema.define(version: 2021_08_18_125602) do
 
   create_table "article_comments", force: :cascade do |t|
     t.integer "article_id"
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 2021_08_16_111747) do
     t.string "name"
     t.string "name_kana"
     t.text "self_introduction"
-    t.text "image"
+    t.text "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

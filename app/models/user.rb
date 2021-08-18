@@ -13,5 +13,5 @@ class User < ApplicationRecord
   #likesモデルとの関連づけ
   has_many :likes, dependent: :destroy
   
-  attachment :profile_image
+  attachment :image
 end

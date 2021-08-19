@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def show
     @user = User.find(params[:id])
     @articles = @user.articles.page(params[:page]).reverse_order
@@ -18,12 +17,11 @@ class UsersController < ApplicationController
     @user.update(user_params)
     redirect_to user_path(@user.id)
   end
-  
+
    private
 
   def user_params
     params.require(:user).permit(:name, :name_kana, :self_introduction, :image)
   end
-
 
 end

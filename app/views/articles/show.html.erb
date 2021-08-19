@@ -4,7 +4,7 @@
     <p>タイトル：<%= @post_image.title %></p>
     <p>エリア：<%= @post_image.category_id %></p>
     <p>本文：<%= @post_image.body %></p>
-    <p>名前：<%= @post_image.user.name %></p>
+    <p>投稿者：<%= @post_image.user.name %></p>
     <p>投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
 
   <% if @post_image.liked_by?(current_user) %>
@@ -30,12 +30,9 @@
 <div class="comments">
 <p>コメント件数：<%= @post_image.article_comments.count %></p>
 <% @post_image.article_comments.each do |article_comment| %>
-  <%#= pp article_comment.user.name %>
-  <%#= article_comment.user.name %>
-  <%#= current_user.name %>
-  
-  <%#= article_comment.created_at.strftime('%Y/%m/%d')  %>
-  <%#= image_tag('sample.jpg') %>
+  <%= article_comment.user.name %>
+  <%= article_comment.created_at.strftime('%Y/%m/%d')  %>
+  <%= attachment_image_tag article_comment.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "sample.jpg" %>
   <%= article_comment.text %>
 
   <% if article_comment.user == current_user %>

@@ -1,8 +1,7 @@
 <div class="profile-container">
   
   <p><%= attachment_image_tag @user, :image, :fill, 100, 100, format: 'jpeg', fallback: "sample.jpg" %></p>
-  <P>名前：<%= @user.name %></P>
-  <P>フリガナ：<%= @user.name_kana %></P>
+  <P>ニックネーム：<%= @user.name %></P>
   <p>自己紹介：<%= @user.self_introduction %></p>
 
   <% if @user.id == current_user.id %>

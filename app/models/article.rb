@@ -1,20 +1,25 @@
 class Article < ApplicationRecord
-  
+
+  validates :title, presence: true
+  validates :body, presence: true
+  #validates :ancestry, presence: true
+  validates :image, presence: true
+
    #userモデルとの関連づけ
    belongs_to :user
    attachment :image
-   
+
    #article_commentsモデルとの関連づけ
    has_many :article_comments, dependent: :destroy
-   
+
    #likesモデルとの関連づけ
    has_many :likes, dependent: :destroy
 
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
-   
-   
+
+
    enum category_id:{
      "---":0,
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,

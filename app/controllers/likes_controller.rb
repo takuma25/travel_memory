@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
 
   def index
-    @all_ranks = Article.find(Like.group(:article_id).order('count(article_id) desc').limit(3).pluck(:article_id))
+    @all_ranks = Article.find(Like.group(:article_id).order('count(article_id) desc').limit(5).pluck(:article_id))
 
   end
 

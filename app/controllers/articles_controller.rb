@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   def show
     @post_image = Article.find(params[:id])
-    @post_comment = @post_image.article_comments.new
+    @post_comment = ArticleComment.new
   end
 
   def new
@@ -17,8 +17,16 @@ class ArticlesController < ApplicationController
   def create
     @post_image = Article.new(post_image_params)
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to article_path(@post_image)
+    if @post_image.save
+      redirect_to article_path(@post_image.id)
+    else
+      render :new
+    end
+
+    #@post_image = Article.new(post_image_params)
+    #@post_image.user_id = current_user.id
+    #@post_image.save
+    #redirect_to article_path(@post_image.id)
   end
 
   def destroy

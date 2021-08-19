@@ -84,3 +84,6 @@ gem 'ancestry'
 
 #ペーシング機能
 gem 'kaminari','~> 1.2.1'
+
+#deviseの日本語化
+gem 'devise-i18n'

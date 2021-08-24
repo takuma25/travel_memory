@@ -1,3 +1,13 @@
+<header class="py-5 bg-light border-bottom mb-1">
+            <div class="container">
+                <div class="text-center my-1">
+                    <h1 class="fw-bolder">トラメモ　~Travel Memory~</h1>
+                    <p class="lead mb-0">日本国内旅行記　あなたにピッタリの旅先が見つかります。</p>
+                </div>
+            </div>
+        </header>
+
+
 <h1>最新投稿</h1>
 <%= @article.each do |article| %>
 <div>
@@ -11,6 +21,7 @@
   <p>👍<%= article.likes.count %> いいね</p>
 </div>
 <% end %>
+
 
 <%= link_to likes_path do %>
 <h1>ランキング</h1>

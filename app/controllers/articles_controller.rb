@@ -22,11 +22,6 @@ class ArticlesController < ApplicationController
     else
       render :new
     end
-
-    #@post_image = Article.new(post_image_params)
-    #@post_image.user_id = current_user.id
-    #@post_image.save
-    #redirect_to article_path(@post_image.id)
   end
 
   def destroy

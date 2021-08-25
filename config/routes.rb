@@ -9,7 +9,6 @@ Rails.application.routes.draw do
     end
 
     resources :users, only: [:show, :edit, :update]
-    #post 'usres/complete' => 'usres#complete' ,as: 'complete'
 
     resources :likes, only: [:index, :create, :destroy]
 

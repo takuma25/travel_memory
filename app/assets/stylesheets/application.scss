@@ -14,3 +14,89 @@
  *= require_self
  */
  @import "bootstrap";
+
+nav {
+  margin-bottom: 50px;
+}
+nav .container {
+  width: 1000px;
+  margin: 0 auto;
+}
+.view-container {
+  width: 1000px;
+  margin: 0 auto;
+
+  header {
+    margin-bottom: 60px;
+  }
+
+  .top {
+    section {
+      margin-bottom: 50px;
+    }
+  }
+}
+
+h2 {
+  padding: 0.5em;
+  color: #494949;
+  background: #fffaf4;
+  border-left: solid 5px #ffaf58;
+}
+h3 {
+  border-bottom: solid 3px #cce4ff;
+  position: relative;
+}
+h3:after {
+  position: absolute;
+  content: " ";
+  display: block;
+  border-bottom: solid 3px #5472cd;
+  bottom: -3px;
+  width: 20%;
+}
+
+.form-table {
+  width: 100%;
+  th {
+    width: 150px;
+    padding: 10px;
+  }
+  td {
+    width: calc(100% - 150px);
+    padding: 10px;
+    input,textarea {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+}
+.submit {
+  text-align: center;
+  margin-top: 50px;
+}
+
+img {
+  width: 100%;
+}
+
+.comments {
+  .attachment {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+  }
+}
+.new-comment {
+  textarea {
+    width: 100%;
+  }
+}
+
+p.profile-img {
+  text-align: center;
+  img {
+    width: auto;
+    max-height: 300px;
+  }
+}

@@ -1,11 +1,28 @@
-<div class="post-body">
-
-  <%= attachment_image_tag @post_image, :image %>
-    <p>タイトル：<%= @post_image.title %></p>
-    <p>エリア：<%= @post_image.category_id %></p>
-    <p>本文：<%= @post_image.body %></p>
-    <p>投稿者：<%= @post_image.user.name %></p>
-    <p>投稿日：<%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+<div class="post-body articles-show">
+<h2 class="mb-5"><%= @post_image.title %></h2>
+  <%= attachment_image_tag @post_image, :image, class: 'mb-3' %>
+    <table class="table table-striped mb-5">
+      <tr>
+        <th>タイトル</th>
+        <td><%= @post_image.title %></td>
+      </tr>
+      <tr>
+        <th>エリア</th>
+        <td><%= @post_image.category_id %></td>
+      </tr>
+      <tr>
+        <th>本文</th>
+        <td><%= @post_image.body %></td>
+      </tr>
+      <tr>
+        <th>投稿者</th>
+        <td><%= @post_image.user.name %></td>
+      </tr>
+      <tr>
+        <th>投稿日</th>
+        <td><%= @post_image.created_at.strftime('%Y/%m/%d') %></td>
+      </tr>
+    </table>
 
   <% if @post_image.liked_by?(current_user) %>
     <p>
@@ -22,25 +39,31 @@
   <% end %>
 
   <% if @post_image.user == current_user %>
-    <%= link_to "投稿削除", article_path(@post_image.id), method: :delete %>
+    <%= link_to "投稿削除", article_path(@post_image.id), method: :delete, class: 'btn btn-danger' %>
   <% end %>
 </div>
 
 
 <div class="comments">
-<p>コメント件数：<%= @post_image.article_comments.count %></p>
-<% @post_image.article_comments.each do |article_comment| %>
-  <%= article_comment.user.name %>
-  <%= article_comment.created_at.strftime('%Y/%m/%d')  %>
-  <%= attachment_image_tag article_comment.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "sample.jpg" %>
-  <%= article_comment.text %>
-
-  <% if article_comment.user == current_user %>
-  <div class="comment-delete">
-    <%= link_to "コメント削除", article_article_comment_path(article_comment.article_id,article_comment.id), method: :delete %>
-  </div>
-  <% end %>
-<% end %>
+  <h3 class="mt-5 mb-3">コメント</h3>
+  <p>コメント件数：<%= @post_image.article_comments.count %></p>
+  <table class="table table-striped">
+    <% @post_image.article_comments.each do |article_comment| %>
+        <tr>
+          <td>
+            <%= attachment_image_tag article_comment.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "sample.jpg" %><br />
+            名前：<%= article_comment.user.name %><br />
+            投稿日時：<%= article_comment.created_at.strftime('%Y/%m/%d')  %><br />
+            コメント：<%= article_comment.text %>
+            <% if article_comment.user == current_user %>
+              <div class="comment-delete">
+                <%= link_to "コメント削除", article_article_comment_path(article_comment.article_id,article_comment.id), method: :delete, class: 'btn btn-danger' %>
+              </div>
+            <% end %>
+          </td>
+        </tr>
+    <% end %>
+  </table>
 </div>
 
 <div class="new-comment">
@@ -48,6 +71,6 @@
   <%= form_with(url: article_article_comments_path(@post_image), local: true) do |f| %>
 
   <%= f.text_area :text, rows:'5',placeholder: "コメントをここに" %>
-  <%= f.submit "送信する" %>
+  <div class="submit"><%= f.submit "送信する", class: "btn btn-primary" %></div>
 <% end %>
 </div>

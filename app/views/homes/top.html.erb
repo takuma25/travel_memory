@@ -1,52 +1,56 @@
-<header class="py-5 bg-light border-bottom mb-1">
-            <div class="container">
-                <div class="text-center my-1">
-                    <h1 class="fw-bolder">トラメモ　~Travel Memory~</h1>
-                    <p class="lead mb-0">日本国内旅行記　あなたにピッタリの旅先が見つかります。</p>
-                </div>
-            </div>
-        </header>
+<div class="top">
+
+  <header class="py-5 bg-light border-bottom">
+              <div class="container">
+                  <div class="text-center my-1">
+                      <h1 class="fw-bolder">トラメモ　~Travel Memory~</h1>
+                      <p class="lead mb-0">日本国内旅行記　あなたにピッタリの旅先が見つかります。</p>
+                  </div>
+              </div>
+          </header>
 
 
-<h1>最新投稿</h1>
-<%= @article.each do |article| %>
-<div>
-  <%= link_to article_path(article.id) do %>
-  <p>タイトル：<%= article.title %></p>
-  <%= attachment_image_tag article, :image %>
-  <% end %>
-  <p>本文：<%= article.body %></p>
-  <p>エリア：<%= article.category_id %></p>
-  <p>投稿日：<%= article.created_at.strftime('%Y/%m/%d') %></p>
-  <p>👍<%= article.likes.count %> いいね</p>
+  <section>
+    <h2>最新投稿</h2>
+    <%= @article.each do |article| %>
+    <div>
+      <%= link_to article_path(article.id) do %>
+      <p>タイトル：<%= article.title %></p>
+      <%= attachment_image_tag article, :image %>
+      <% end %>
+      <p>本文：<%= article.body %></p>
+      <p>エリア：<%= article.category_id %></p>
+      <p>投稿日：<%= article.created_at.strftime('%Y/%m/%d') %></p>
+      <p>👍<%= article.likes.count %> いいね</p>
+    </div>
+    <% end %>
+  </section>
+
+
+  <section>
+    <%= link_to likes_path do %>
+    <h2>ランキング</h2>
+    <% end %>
+    <%= @all_ranks.each do |article| %>
+    <div>
+      <%= link_to article_path(article.id) do %>
+      <p>タイトル：<%= article.title %></p>
+      <%= attachment_image_tag article, :image %>
+      <% end %>
+      <p>本文：<%= article.body %></p>
+      <p>エリア：<%= article.category_id %></p>
+      <p>投稿日：<%= article.created_at.strftime('%Y/%m/%d') %></p>
+      <p>👍<%= article.likes.count %> いいね</p>
+    </div>
+    <% end %>
+  </section>
+
+  <section>
+    <h2>エリア別</h2>
+    <%= form_with url: categories_path, method: :get, local:true do |f| %>
+    <%= f.select :category_id, Article.category_ids.keys, {} %>
+
+    <%= f.submit '検索' %>
+    <% end %>
+  </section>
 </div>
-<% end %>
-
-
-<%= link_to likes_path do %>
-<h1>ランキング</h1>
-<% end %>
-<%= @all_ranks.each do |article| %>
-<div>
-  <%= link_to article_path(article.id) do %>
-  <p>タイトル：<%= article.title %></p>
-  <%= attachment_image_tag article, :image %>
-  <% end %>
-  <p>本文：<%= article.body %></p>
-  <p>エリア：<%= article.category_id %></p>
-  <p>投稿日：<%= article.created_at.strftime('%Y/%m/%d') %></p>
-  <p>👍<%= article.likes.count %> いいね</p>
-</div>
-<% end %>
-
-
-
-<h1>エリア別</h1>
-<%= form_with url: categories_path, method: :get, local:true do |f| %>
-<%= f.select :category_id, Article.category_ids.keys, {} %>
-
-<%= f.submit '投稿' %>
-<% end %>
-
-
-

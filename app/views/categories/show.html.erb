@@ -1,5 +1,6 @@
 <%= @post_ranks.each do |article| %>
 <div>
+  <h2 class="mb-5"><%= article.title %></h2>
   <%= link_to article_path(article.id) do %>
   <p>タイトル：<%= article.title %></p>
   <%= attachment_image_tag article, :image %>

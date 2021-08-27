@@ -13,7 +13,13 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap";
+@import "bootstrap";
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
 
 nav {
   margin-bottom: 50px;
@@ -31,8 +37,20 @@ nav .container {
   }
 
   .top {
-    section {
-      margin-bottom: 50px;
+    div.clearfix {
+      aside {
+        width: 38%;
+        float: left;
+      }
+      .f-right {
+        width: 60%;
+        float: right;
+      }
+      section {
+        padding: 10px;
+        border: 1px solid #999;
+        word-break: break-all;
+      }
     }
   }
 }
@@ -69,6 +87,9 @@ h3:after {
       width: 100%;
       padding: 10px;
     }
+    textarea {
+      min-height: 200px;
+    }
   }
 }
 .submit {
@@ -97,6 +118,6 @@ p.profile-img {
   text-align: center;
   img {
     width: auto;
-    max-height: 300px;
+    max-height: 500px;
   }
 }

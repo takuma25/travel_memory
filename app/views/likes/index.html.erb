@@ -1,13 +1,14 @@
+<h2>〜全国ランキング一覧〜</h2></br>
+
 <%= @all_ranks.each do |article| %>
 <div>
   <h2 class="mb-5"><%= article.title %></h2>
   <%= link_to article_path(article.id) do %>
-  <p>タイトル：<%= article.title %></p>
   <%= attachment_image_tag article, :image %>
   <% end %>
-  <p>本文：<%= article.body %></p>
-  <p>エリア：<%= article.category_id %></p>
-  <p>投稿日：<%= article.created_at.strftime('%Y/%m/%d') %></p>
-  <p>👍<%= article.likes.count %> いいね</p>
+  <h5>いいね👍　<%= article.likes.count %></h5></br>
+  <h5>エリア：<%= article.category_id %></h5></br>
+  <h5>投稿日：<%= article.created_at.strftime('%Y/%m/%d') %></h5></br>
+  <h5>本文：<%= article.body %></h5></br>
 </div>
 <% end %>

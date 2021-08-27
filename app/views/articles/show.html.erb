@@ -11,10 +11,6 @@
         <td><%= @post_image.category_id %></td>
       </tr>
       <tr>
-        <th>本文</th>
-        <td><%= @post_image.body %></td>
-      </tr>
-      <tr>
         <th>投稿者</th>
         <td><%= @post_image.user.name %></td>
       </tr>
@@ -22,20 +18,24 @@
         <th>投稿日</th>
         <td><%= @post_image.created_at.strftime('%Y/%m/%d') %></td>
       </tr>
+      <tr>
+        <th>本文</th>
+        <td><%= @post_image.body %></td>
+      </tr>
     </table>
 
   <% if @post_image.liked_by?(current_user) %>
-    <p>
+    <h4>
       <%= link_to like_path(@post_image), method: :delete do %>
         👍<%= @post_image.likes.count %> いいね
       <% end %>
-    </p>
+    </h4>
     <% else %>
-    <p>
+    <h4>
       <%= link_to likes_path(article_id: @post_image.id), method: :post do %>
         👍<%= @post_image.likes.count %> いいね
       <% end %>
-    </p>
+    </h4>
   <% end %>
 
   <% if @post_image.user == current_user %>
@@ -46,13 +46,13 @@
 
 <div class="comments">
   <h3 class="mt-5 mb-3">コメント</h3>
-  <p>コメント件数：<%= @post_image.article_comments.count %></p>
+  <h5>コメント件数：<%= @post_image.article_comments.count %></h5>
   <table class="table table-striped">
     <% @post_image.article_comments.each do |article_comment| %>
         <tr>
           <td>
             <%= attachment_image_tag article_comment.user, :image, :fill, 100, 100, format: 'jpeg', fallback: "sample.jpg" %><br />
-            名前：<%= article_comment.user.name %><br />
+            投稿者：<%= article_comment.user.name %><br />
             投稿日時：<%= article_comment.created_at.strftime('%Y/%m/%d')  %><br />
             コメント：<%= article_comment.text %>
             <% if article_comment.user == current_user %>

@@ -1,6 +1,6 @@
 <div class="users-edit">
   <h2>プロフィール設定</h2>
-  <p class="profile-img"><%= attachment_image_tag @user, :image, :fill, 60, 60, fallback: "sample.jpg"%></p>
+  <p class="profile-img"><%= attachment_image_tag @user, :image, :fill, 300, 300, fallback: "sample.jpg"%></p>
   <%= form_with model:@user, local:true do |f| %>
     <table class="form-table">
       <tr>

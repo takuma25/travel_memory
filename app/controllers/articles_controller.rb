@@ -10,10 +10,6 @@ class ArticlesController < ApplicationController
    @post_image = Article.new
   end
 
-  def comfirm
-
-  end
-
   def create
     @post_image = Article.new(post_image_params)
     @post_image.user_id = current_user.id

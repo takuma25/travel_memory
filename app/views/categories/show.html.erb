@@ -1,8 +1,9 @@
+<h2>〜都道府県別ランキング〜</h2></br>
+
 <%= @post_ranks.each do |article| %>
 <div>
-  <h2 class="mb-5"><%= article.title %></h2>
   <%= link_to article_path(article.id) do %>
-  <p>タイトル：<%= article.title %></p>
+  <h2 class="mb-5"><%= article.title %></h2>
   <%= attachment_image_tag article, :image %>
   <% end %>
   <p>本文：<%= article.body %></p>

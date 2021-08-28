@@ -1,4 +1,4 @@
-class PostImagesController < 
+class PostImagesController < ApplicationController
   
   def new
     

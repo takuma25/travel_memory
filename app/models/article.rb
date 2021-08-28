@@ -4,6 +4,7 @@ class Article < ApplicationRecord
   validates :body, presence: true
   #validates :ancestry, presence: true
   validates :image, presence: true
+  validate :validate_category
 
    #userモデルとの関連づけ
    belongs_to :user
@@ -32,4 +33,13 @@ class Article < ApplicationRecord
      福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
      沖縄県:47
    }
+
+   def validate_category
+     if category_id.blank? || category_id == '---'
+       errors.add(:category_id, 'エリアを選択してください')
+       return false
+     end
+
+     true
+   end
 end

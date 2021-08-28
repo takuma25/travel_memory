@@ -1,14 +1,14 @@
 <h2>〜都道府県別ランキング〜</h2></br>
 
-<%= @post_ranks.each do |article| %>
+<% @post_ranks.each do |article| %>
 <div>
   <%= link_to article_path(article.id) do %>
   <h2 class="mb-5"><%= article.title %></h2>
   <%= attachment_image_tag article, :image %>
   <% end %>
-  <p>本文：<%= article.body %></p>
-  <p>エリア：<%= article.category_id %></p>
-  <p>投稿日：<%= article.created_at.strftime('%Y/%m/%d') %></p>
-  <p>👍<%= article.likes.count %> いいね</p>
+  <h5>いいね👍　<%= article.likes.count %></h5></br>
+  <h5>エリア：<%= article.category_id %></h5></br>
+  <h5>投稿日：<%= article.created_at.strftime('%Y/%m/%d') %></h5></br>
+  <h5>本文：<%= article.body %></h5></br>
 </div>
 <% end %>

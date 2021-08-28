@@ -14,7 +14,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
-                <h1 class="navbar-brand">Travel Memory</h1>
+                <h1 class="navbar-brand">トラメモ　〜Travel Memory〜</h1>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,7 +36,31 @@
         </nav>
 
         <div class="view-container">
-          <%= yield %>
-        </div>
+          <%= yield %></br>
+          <footer>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <h1 class="navbar-brand">トラメモ　〜Travel Memory〜</h1>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                        <% if user_signed_in? %>
+                        <li class="nav-link active"><%= link_to "ホーム", root_path(current_user.id) %></li>
+                        <li class="nav-link active"><%= link_to 'マイページ', user_path(current_user.id) %></li>
+                        <li class="nav-link active"><%= link_to "新規投稿", new_article_path(current_user.id) %></li>
+                        <li class="nav-link active"><%= link_to '設定', edit_user_path(current_user.id) %></li>
+                        <li class="nav-link active"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
+                        <% else %>
+                        <li class="nav-link active"><%= link_to "新規登録", new_user_registration_path %></li>
+                        <li class="nav-link active"><%= link_to "ログイン", new_user_session_path %></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+          </nav>
+        </footer>
+       </div>
   </body>
 </html>

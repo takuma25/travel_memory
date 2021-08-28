@@ -1,6 +1,6 @@
 <h2>〜全国ランキング一覧〜</h2></br>
 
-<%= @all_ranks.each do |article| %>
+<% @all_ranks.each do |article| %>
 <div>
   <h2 class="mb-5"><%= article.title %></h2>
   <%= link_to article_path(article.id) do %>

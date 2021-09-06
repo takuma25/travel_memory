@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_18_125602) do
+ActiveRecord::Schema.define(version: 2021_09_06_123619) do
 
   create_table "article_comments", force: :cascade do |t|
     t.integer "article_id"
@@ -28,13 +28,16 @@ ActiveRecord::Schema.define(version: 2021_08_18_125602) do
     t.string "image_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
+    t.float "latitude"
+    t.float "longitude"
   end
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.string "ancestry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ancestry"
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 

@@ -87,3 +87,6 @@ gem 'kaminari','~> 1.2.1'
 
 #deviseの日本語化
 gem 'devise-i18n'
+
+#API導入
+gem 'dotenv-rails'

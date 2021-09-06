@@ -2,7 +2,6 @@ class Article < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
-  #validates :ancestry, presence: true
   validates :image, presence: true
   validate :validate_category
 

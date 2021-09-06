@@ -22,6 +22,18 @@
         <th>本文</th>
         <td><%= @post_image.body %></td>
       </tr>
+      <tr>
+        <th>名所</th>
+        <td><%= @post_image.description %></td>
+      </tr>
+      <tr>
+        <th>緯度</th>
+        <td><%= @post_image.latitude %></td>
+      </tr>
+      <tr>
+        <th>経度</th>
+        <td><%= @post_image.longitude %></td>
+      </tr>
     </table>
 
   <% if @post_image.liked_by?(current_user) %>

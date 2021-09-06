@@ -14,6 +14,10 @@ class ArticlesController < ApplicationController
     @post_image = Article.new(post_image_params)
     @post_image.user_id = current_user.id
     if @post_image.save
+      landmark = Vision.get_image_data(@post_image.image)
+      latitude = landmark["locations"][0]["latLng"]["latitude"]
+      longitude = landmark["locations"][0]["latLng"]["longitude"]
+      @post_image.update(description: landmark["description"], latitude: latitude, longitude: longitude)
       redirect_to article_path(@post_image.id)
     else
       render :new
